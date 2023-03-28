@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Amcharts Deviation Plots</title>
+        <style>
+          #deviation, #sample_deviation {
+            width: 1250px;
+            height: 450px;
+            margin: 50px;
+          }
+        </style>
+        <script src="https://cdn.amcharts.com/lib/4/core.js"></script>
+        <script src="https://cdn.amcharts.com/lib/4/charts.js"></script>
+        <script src="https://cdn.amcharts.com/lib/4/themes/animated.js"></script>
+    </head>
+    <body>
+
+      <h1>&#8730BWMV</h1>
+
+      <script src = "central_tendency_data.js"></script>
+      <script src = "deviation_data.js"></script>
+
+      <script>
+
+        am4core.useTheme(am4themes_animated);
+        var chart = am4core.create("deviation", am4charts.XYChart);
+
+        //chart.data = signature_data;
+
+        var freq_axis = chart.xAxes.push(new am4charts.ValueAxis());
+        freq_axis.tooltip.disabled = true;
+        freq_axis.renderer.ticks.template.disabled = true;
+        freq_axis.renderer.axisFills.template.disabled = true;
+        freq_axis.title.text = "Frequency (nm)";
+        freq_axis.title.fontWeight = "bold";
+        freq_axis.title.fontSize = 30;
+        freq_axis.renderer.labels.template.fontWeight = "bold";
+
+        var reflect_axis = chart.yAxes.push(new am4charts.ValueAxis());
+        //reflect_axis.renderer.grid.template.location = 0;
+        reflect_axis.renderer.ticks.template.disabled = true;
+        reflect_axis.renderer.axisFills.template.disabled = true;
+        reflect_axis.renderer.labels.template.fontSize = 25;
+        reflect_axis.title.text = "Reflectance (%)";
+        reflect_axis.title.fontWeight = "bold";
+        reflect_axis.title.fontSize = 30;
+        reflect_axis.title.paddingBottom = 20;
+
+        var dettechtia_cancer_series = chart.series.push(new am4charts.LineSeries());
+        dettechtia_cancer_series.dataFields.valueY = "value";
+        dettechtia_cancer_series.dataFields.valueX = "frequency";
+        dettechtia_cancer_series.strokeWidth = 3;
+        dettechtia_cancer_series.name = "Cancer";
+        //dettechtia_cancer_series.stroke = am4core.color("#000000");;
+        dettechtia_cancer_series.stroke = am4core.color(bcc_colour);
+        dettechtia_cancer_series.data = dettecthia_sig_dev.filter(({sample}) => ["Cancer"].includes(sample));
+
+        var dettechtia_healthy_series = chart.series.push(new am4charts.LineSeries());
+        dettechtia_healthy_series.dataFields.valueY = "value";
+        dettechtia_healthy_series.dataFields.valueX = "frequency";
+        //dettechtia_healthy_series.stroke = am4core.color("#FF0000");
+        dettechtia_healthy_series.stroke = am4core.color(healthy_colour);
+        dettechtia_healthy_series.strokeWidth = 3;
+        dettechtia_healthy_series.name = "Healthy";
+        dettechtia_healthy_series.data = dettecthia_sig_dev.filter(({sample}) => ["Healthy"].includes(sample));
+
+        /*
+        var dettechtia_ak_series = chart.series.push(new am4charts.LineSeries());
+        dettechtia_ak_series.dataFields.valueY = "value";
+        dettechtia_ak_series.dataFields.valueX = "frequency";
+        dettechtia_ak_series.stroke = am4core.color("blue");;
+        dettechtia_ak_series.strokeWidth = 3;
+        dettechtia_ak_series.name = "Nevus";
+        dettechtia_ak_series.data = nev_dict_dev;
+        */
+
+        var dettechtia_ak_series = chart.series.push(new am4charts.LineSeries());
+        dettechtia_ak_series.dataFields.valueY = "value";
+        dettechtia_ak_series.dataFields.valueX = "frequency";
+        //dettechtia_ak_series.stroke = am4core.color("orange");;
+        dettechtia_ak_series.stroke = am4core.color(ak_colour);
+        dettechtia_ak_series.strokeWidth = 3;
+        dettechtia_ak_series.name = "Actinic Keratosis";
+        dettechtia_ak_series.data = ak_dict_dev;
+
+        chart.legend = new am4charts.Legend();
+        chart.legend.fontSize = 20;
+        chart.legend.fontWeight = "bold";
+
+        chart.exporting.menu = new am4core.ExportMenu();
+
+      </script>
+
+      <div id = "deviation"></div>
+
+      <script>
+
+        am4core.useTheme(am4themes_animated);
+        var chart = am4core.create("sample_deviation", am4charts.XYChart);
+
+        //chart.data = signature_data;
+
+        var freq_axis = chart.xAxes.push(new am4charts.ValueAxis());
+        freq_axis.tooltip.disabled = true;
+        freq_axis.renderer.ticks.template.disabled = true;
+        freq_axis.renderer.axisFills.template.disabled = true;
+        freq_axis.title.text = "Frequency (nm)";
+        freq_axis.title.fontWeight = "bold";
+        freq_axis.title.fontSize = 30;
+        freq_axis.renderer.labels.template.fontWeight = "bold";
+
+        var reflect_axis = chart.yAxes.push(new am4charts.ValueAxis());
+        //reflect_axis.renderer.grid.template.location = 0;
+        reflect_axis.renderer.ticks.template.disabled = true;
+        reflect_axis.renderer.axisFills.template.disabled = true;
+        reflect_axis.renderer.labels.template.fontSize = 25;
+        reflect_axis.title.text = "Reflectance (%)";
+        reflect_axis.title.fontWeight = "bold";
+        reflect_axis.title.fontSize = 30;
+        reflect_axis.title.paddingBottom = 20;
+
+        var dettechtia_cancer_series = chart.series.push(new am4charts.LineSeries());
+        dettechtia_cancer_series.dataFields.valueY = "value";
+        dettechtia_cancer_series.dataFields.valueX = "frequency";
+        dettechtia_cancer_series.strokeWidth = 3;
+        dettechtia_cancer_series.name = "Basal Cell Carcinoma";
+        //dettechtia_cancer_series.stroke = am4core.color("#000000");;
+        dettechtia_cancer_series.stroke = am4core.color(bcc_colour);
+        dettechtia_cancer_series.data = bcc_dict_dev;
+
+        var dettechtia_healthy_series = chart.series.push(new am4charts.LineSeries());
+        dettechtia_healthy_series.dataFields.valueY = "value";
+        dettechtia_healthy_series.dataFields.valueX = "frequency";
+        //dettechtia_healthy_series.stroke = am4core.color("#FF0000");
+        dettechtia_healthy_series.stroke = am4core.color(healthy_colour);
+        dettechtia_healthy_series.strokeWidth = 3;
+        dettechtia_healthy_series.name = "Healthy";
+        dettechtia_healthy_series.data = dettecthia_sig_dev.filter(({sample}) => ["Healthy"].includes(sample));
+
+        var dettechtia_ak_series = chart.series.push(new am4charts.LineSeries());
+        dettechtia_ak_series.dataFields.valueY = "value";
+        dettechtia_ak_series.dataFields.valueX = "frequency";
+        dettechtia_ak_series.stroke = am4core.color(scc_colour);;
+        dettechtia_ak_series.strokeWidth = 3;
+        dettechtia_ak_series.name = "Squamous Cell Carcinoma";
+        dettechtia_ak_series.data = scc_dict_dev;
+
+        var dettechtia_ak_series = chart.series.push(new am4charts.LineSeries());
+        dettechtia_ak_series.dataFields.valueY = "value";
+        dettechtia_ak_series.dataFields.valueX = "frequency";
+        //dettechtia_ak_series.stroke = am4core.color("orange");;
+        dettechtia_ak_series.stroke = am4core.color(ak_colour);
+        dettechtia_ak_series.strokeWidth = 3;
+        dettechtia_ak_series.name = "Actinic Keratosis";
+        dettechtia_ak_series.data = ak_dict_dev;
+
+        chart.legend = new am4charts.Legend();
+        chart.legend.fontSize = 20;
+        chart.legend.fontWeight = "bold";
+
+        chart.exporting.menu = new am4core.ExportMenu();
+
+      </script>
+
+      <div id = "sample_deviation"></div>
+
+    </body>
+</html>

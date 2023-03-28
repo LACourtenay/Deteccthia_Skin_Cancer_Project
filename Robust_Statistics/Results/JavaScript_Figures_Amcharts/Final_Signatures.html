@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Final Results</title>
+        <style>
+          #window, #window_dev, #final_window {
+            width: 1250px;
+            height: 450px;
+            margin: 50px;
+          }
+          #all_windows {
+            width: 1250px;
+            margin: 50px;
+            height: 450px;
+          }
+        </style>
+        <script src="https://cdn.amcharts.com/lib/4/core.js"></script>
+        <script src="https://cdn.amcharts.com/lib/4/charts.js"></script>
+        <script src="https://cdn.amcharts.com/lib/4/themes/animated.js"></script>
+    </head>
+    <body>
+
+      <script src = "central_tendency_data.js"></script>
+      <script src = "deviation_data.js"></script>
+      
+      <script>
+        am4core.ready(function() {
+
+          var scroll = true;
+
+          am4core.useTheme(am4themes_animated);
+          var chart = am4core.create("all_windows", am4charts.XYChart);
+
+          chart.data = [{
+                "category": "H vs BCC",
+                "open": 900.656,
+                "close": 1379.05
+              }, {
+                "category": "H vs SCC",
+                "open": 900.656,
+                "close": 990.651
+              }, {
+                "category": "H vs SCC",
+                "open": 1052.23,
+                "close": 1085.38
+              }, {
+                "category": "H vs SCC",
+                "open": 1379.05,
+                "close": 1515.67
+              }, {
+                "category": "H vs AK",
+                "open": 900.656,
+                "close": 1345.89
+              }, {
+                "category": "SCC vs AK",
+                "open": 900.656,
+                "close": 1322.21
+              }, {
+                "category": "BCC vs AK",
+                "open": 981.178,
+                "close": 1061.7
+              }, {
+                "category": "SCC vs BCC",
+                "open": 1028.54,
+                "close": 1038.02
+              }, {
+                "category": "SCC vs BCC",
+                "open": 1109.06,
+                "close": 1208.53
+              }, {
+                "category": "SCC vs BCC",
+                "open": 1236.95,
+                "close": 1506.94
+              }, {
+                "category": "SCC vs BCC",
+                "open": 1544.83,
+                "close": 1554.3
+              }];
+
+          var categoryAxis = chart.yAxes.push(new am4charts.CategoryAxis());
+          categoryAxis.renderer.grid.template.location = 0;
+          categoryAxis.renderer.ticks.template.disabled = true;
+          categoryAxis.renderer.axisFills.template.disabled = true;
+          categoryAxis.dataFields.category = "category";
+          categoryAxis.renderer.minGridDistance = 15;
+          categoryAxis.renderer.grid.template.location = 0.5;
+          categoryAxis.renderer.grid.template.strokeDasharray = "1,3";
+          categoryAxis.renderer.labels.template.fontSize = 25;
+          categoryAxis.title.text = "Method";
+          categoryAxis.title.fontWeight = "bold";
+          categoryAxis.title.fontSize = 30;
+          categoryAxis.title.paddingBottom = 20;
+
+          var valueAxis = chart.xAxes.push(new am4charts.ValueAxis());
+          valueAxis.tooltip.disabled = true;
+          valueAxis.renderer.ticks.template.disabled = true;
+          valueAxis.renderer.axisFills.template.disabled = true;
+          valueAxis.title.text = "Frequency (nm)";
+          valueAxis.title.fontWeight = "bold";
+          valueAxis.title.fontSize = 30;
+          valueAxis.renderer.labels.template.fontWeight = "bold";
+
+          var series = chart.series.push(new am4charts.ColumnSeries());
+          series.dataFields.categoryY = "category";
+          series.dataFields.openValueX = "open";
+          series.dataFields.valueX = "close";
+          series.tooltipText = "open: {openValueX.value} close: {valueX.value}";
+          series.sequencedInterpolation = true;
+          series.fillOpacity = 0;
+          series.strokeOpacity = 2;
+          series.columns.template.height = 0.01;
+          series.tooltip.pointerOrientation = "vertical";
+          series.stroke = am4core.color("black");
+          series.strokeWidth = 5;
+
+          function createRange2(from, to, color, opacity = 0.15) {
+            var range = valueAxis.axisRanges.create();
+            range.value = from;
+            range.endValue = to;
+            range.grid.disabled = true;
+            range.label.fontSize = 25;
+            range.axisFill.fill = color;
+            range.axisFill.fillOpacity = opacity;
+          }
+
+          createRange2(1383.79, 1454.83, am4core.color("#FF0000"), opacity = 0.075);
+          createRange2(1236.95, 1322.21, am4core.color("#FF0000"), opacity = 0.075);
+          createRange2(1109.06, 1208.53, am4core.color("#FF0000"), opacity = 0.075);
+          createRange2(900.656, 1085.38, am4core.color("#FF0000"), opacity = 0.075);
+
+          valueAxis.min = 890;
+          valueAxis.max = 1615;
+          valueAxis.strictMinMax = true;
+
+          var openBullet = series.bullets.create(am4charts.CircleBullet);
+          openBullet.locationX = 1;
+          openBullet.strokeWidth = 5;
+          openBullet.fill = am4core.color("black");
+          openBullet.stroke = am4core.color("black");
+
+          var closeBullet = series.bullets.create(am4charts.CircleBullet);
+
+          closeBullet.fill = am4core.color("black");
+          closeBullet.stroke = am4core.color("black");
+          closeBullet.strokeWidth = 5;
+            
+          if (scroll) {
+            chart.cursor = new am4charts.XYCursor();
+            chart.cursor.behavior = "zoomY";
+
+            chart.cursor = new am4charts.XYCursor();
+            chart.cursor.behavior = "zoomXY";
+          }
+      
+          chart.exporting.menu = new am4core.ExportMenu();
+            
+        })
+      </script>
+
+      <div id = "all_windows"></div>
+
+      <h1>Central Tendency</h1>
+
+      <script>
+
+        var see_channels = true;
+        var corrected_channels = true;
+        var scroll = true;
+
+        //const signature_data = hyperskincare_sig.concat(dettecthia_sig);
+
+        am4core.useTheme(am4themes_animated);
+        var chart = am4core.create("window", am4charts.XYChart);
+
+        //chart.data = signature_data;
+
+        var freq_axis = chart.xAxes.push(new am4charts.ValueAxis());
+        freq_axis.tooltip.disabled = true;
+        freq_axis.renderer.ticks.template.disabled = true;
+        freq_axis.renderer.axisFills.template.disabled = true;
+        freq_axis.title.text = "Frequency (nm)";
+        freq_axis.title.fontWeight = "bold";
+        freq_axis.title.fontSize = 30;
+        freq_axis.renderer.labels.template.fontWeight = "bold";
+
+        var reflect_axis = chart.yAxes.push(new am4charts.ValueAxis());
+        //reflect_axis.renderer.grid.template.location = 0;
+        reflect_axis.renderer.ticks.template.disabled = true;
+        reflect_axis.renderer.axisFills.template.disabled = true;
+        reflect_axis.renderer.labels.template.fontSize = 25;
+        reflect_axis.title.text = "Reflectance (%)";
+        reflect_axis.title.fontWeight = "bold";
+        reflect_axis.title.fontSize = 30;
+        reflect_axis.title.paddingBottom = 20;
+
+        var dettechtia_cancer_series = chart.series.push(new am4charts.LineSeries());
+        dettechtia_cancer_series.dataFields.valueY = "value";
+        dettechtia_cancer_series.dataFields.valueX = "frequency";
+        dettechtia_cancer_series.strokeWidth = 3;
+        dettechtia_cancer_series.name = "Cancer";
+        dettechtia_cancer_series.stroke = am4core.color(scc_colour);;
+        dettechtia_cancer_series.data = dettecthia_sig.filter(({sample}) => ["Cancer"].includes(sample));
+
+        var dettechtia_healthy_series = chart.series.push(new am4charts.LineSeries());
+        dettechtia_healthy_series.dataFields.valueY = "value";
+        dettechtia_healthy_series.dataFields.valueX = "frequency";
+        dettechtia_healthy_series.stroke = am4core.color(healthy_colour);
+        dettechtia_healthy_series.strokeWidth = 3;
+        dettechtia_healthy_series.name = "Healthy";
+        dettechtia_healthy_series.data = dettecthia_sig.filter(({sample}) => ["Healthy"].includes(sample));
+
+        var dettechtia_ak_series = chart.series.push(new am4charts.LineSeries());
+        dettechtia_ak_series.dataFields.valueY = "value";
+        dettechtia_ak_series.dataFields.valueX = "frequency";
+        dettechtia_ak_series.stroke = am4core.color(ak_colour);;
+        dettechtia_ak_series.strokeWidth = 3;
+        dettechtia_ak_series.name = "Actinic Keratosis";
+        dettechtia_ak_series.data = ak_dict;
+
+        chart.legend = new am4charts.Legend();
+        chart.legend.fontSize = 20;
+        chart.legend.fontWeight = "bold";
+
+        createRange(1383.79, 1454.83, am4core.color("#FF0000"), opacity = 0.075);
+        createRange(1236.95, 1322.21, am4core.color("#FF0000"), opacity = 0.075);
+        createRange(1109.06, 1208.53, am4core.color("#FF0000"), opacity = 0.075);
+        createRange(900.656, 1085.38, am4core.color("#FF0000"), opacity = 0.075);
+
+        if (see_channels) {
+          var optimal_range = freq_axis.axisRanges.create();
+          optimal_range.value = 929.075;
+          optimal_range.grid.stroke = am4core.color("black");
+          optimal_range.grid.strokeWidth = 2;
+          optimal_range.grid.strokeOpacity = 1;
+          optimal_range.grid.strokeDasharray = "8,4";
+
+          var optimal_range2_5 = freq_axis.axisRanges.create();
+          optimal_range2_5.value = 1033.280;
+          optimal_range2_5.grid.stroke = am4core.color("black");
+          optimal_range2_5.grid.strokeWidth = 2;
+          optimal_range2_5.grid.strokeOpacity = 1;
+          optimal_range2_5.grid.strokeDasharray = "8,4";
+
+          var optimal_range3 = freq_axis.axisRanges.create();
+          optimal_range3.value = 1118.540;
+          optimal_range3.grid.stroke = am4core.color("black");
+          optimal_range3.grid.strokeWidth = 2;
+          optimal_range3.grid.strokeOpacity = 1;
+          optimal_range3.grid.strokeDasharray = "8,4";
+        }
+
+        if (scroll) {
+          chart.cursor = new am4charts.XYCursor();
+          chart.cursor.behavior = "zoomY";
+
+          chart.cursor = new am4charts.XYCursor();
+          chart.cursor.behavior = "zoomXY";
+        }
+
+        chart.exporting.menu = new am4core.ExportMenu();
+
+      </script>
+
+      <div id = "window"></div>
+
+      <h1>Deviation</h1>
+
+      <script>
+
+        var see_channels = true;
+        var corrected_channels = true;
+        var scroll = true;
+
+        //const signature_data = hyperskincare_sig.concat(dettecthia_sig);
+
+        am4core.useTheme(am4themes_animated);
+        var chart = am4core.create("window_dev", am4charts.XYChart);
+
+        //chart.data = signature_data;
+
+        var freq_axis = chart.xAxes.push(new am4charts.ValueAxis());
+        freq_axis.tooltip.disabled = true;
+        freq_axis.renderer.ticks.template.disabled = true;
+        freq_axis.renderer.axisFills.template.disabled = true;
+        freq_axis.title.text = "Frequency (nm)";
+        freq_axis.title.fontWeight = "bold";
+        freq_axis.title.fontSize = 30;
+        freq_axis.renderer.labels.template.fontWeight = "bold";
+
+        var reflect_axis = chart.yAxes.push(new am4charts.ValueAxis());
+        //reflect_axis.renderer.grid.template.location = 0;
+        reflect_axis.renderer.ticks.template.disabled = true;
+        reflect_axis.renderer.axisFills.template.disabled = true;
+        reflect_axis.renderer.labels.template.fontSize = 25;
+        reflect_axis.title.text = "Reflectance (%)";
+        reflect_axis.title.fontWeight = "bold";
+        reflect_axis.title.fontSize = 30;
+        reflect_axis.title.paddingBottom = 20;
+
+        var dettechtia_cancer_series = chart.series.push(new am4charts.LineSeries());
+        dettechtia_cancer_series.dataFields.valueY = "value";
+        dettechtia_cancer_series.dataFields.valueX = "frequency";
+        dettechtia_cancer_series.strokeWidth = 3;
+        dettechtia_cancer_series.name = "Cancer";
+        dettechtia_cancer_series.stroke = am4core.color(scc_colour);;
+        dettechtia_cancer_series.data = dettecthia_sig_dev.filter(({sample}) => ["Cancer"].includes(sample));
+
+        var dettechtia_healthy_series = chart.series.push(new am4charts.LineSeries());
+        dettechtia_healthy_series.dataFields.valueY = "value";
+        dettechtia_healthy_series.dataFields.valueX = "frequency";
+        dettechtia_healthy_series.stroke = am4core.color(healthy_colour);
+        dettechtia_healthy_series.strokeWidth = 3;
+        dettechtia_healthy_series.name = "Healthy";
+        dettechtia_healthy_series.data = dettecthia_sig_dev.filter(({sample}) => ["Healthy"].includes(sample));
+
+        var dettechtia_ak_series = chart.series.push(new am4charts.LineSeries());
+        dettechtia_ak_series.dataFields.valueY = "value";
+        dettechtia_ak_series.dataFields.valueX = "frequency";
+        dettechtia_ak_series.stroke = am4core.color(ak_colour);;
+        dettechtia_ak_series.strokeWidth = 3;
+        dettechtia_ak_series.name = "Actinic Keratosis";
+        dettechtia_ak_series.data = ak_dict_dev;
+
+        chart.legend = new am4charts.Legend();
+        chart.legend.fontSize = 20;
+        chart.legend.fontWeight = "bold";
+
+        createRange(1383.79, 1454.83, am4core.color("#FF0000"), opacity = 0.075);
+        createRange(1236.95, 1322.21, am4core.color("#FF0000"), opacity = 0.075);
+        createRange(1109.06, 1208.53, am4core.color("#FF0000"), opacity = 0.075);
+        createRange(900.656, 1085.38, am4core.color("#FF0000"), opacity = 0.075);
+
+        if (see_channels) {
+          var optimal_range = freq_axis.axisRanges.create();
+          optimal_range.value = 929.075;
+          optimal_range.grid.stroke = am4core.color("black");
+          optimal_range.grid.strokeWidth = 2;
+          optimal_range.grid.strokeOpacity = 1;
+          optimal_range.grid.strokeDasharray = "8,4";
+
+          var optimal_range2_5 = freq_axis.axisRanges.create();
+          optimal_range2_5.value = 1033.280;
+          optimal_range2_5.grid.stroke = am4core.color("black");
+          optimal_range2_5.grid.strokeWidth = 2;
+          optimal_range2_5.grid.strokeOpacity = 1;
+          optimal_range2_5.grid.strokeDasharray = "8,4";
+
+          var optimal_range3 = freq_axis.axisRanges.create();
+          optimal_range3.value = 1118.540;
+          optimal_range3.grid.stroke = am4core.color("black");
+          optimal_range3.grid.strokeWidth = 2;
+          optimal_range3.grid.strokeOpacity = 1;
+          optimal_range3.grid.strokeDasharray = "8,4";
+        }
+
+        if (scroll) {
+          chart.cursor = new am4charts.XYCursor();
+          chart.cursor.behavior = "zoomY";
+
+          chart.cursor = new am4charts.XYCursor();
+          chart.cursor.behavior = "zoomXY";
+        }
+
+        chart.exporting.menu = new am4core.ExportMenu();
+
+      </script>
+
+      <div id = "window_dev"></div>
+
+      <h1>Final Signatures</h1>
+
+      <script>
+
+        var see_channels = true;
+        var corrected_channels = true;
+        var scroll = true;
+
+        //const signature_data = hyperskincare_sig.concat(dettecthia_sig);
+
+        am4core.useTheme(am4themes_animated);
+        var chart = am4core.create("final_window", am4charts.XYChart);
+
+        //chart.data = signature_data;
+
+        var freq_axis = chart.xAxes.push(new am4charts.ValueAxis());
+        freq_axis.tooltip.disabled = true;
+        freq_axis.renderer.ticks.template.disabled = true;
+        freq_axis.renderer.axisFills.template.disabled = true;
+        freq_axis.title.text = "Frequency (nm)";
+        freq_axis.title.fontWeight = "bold";
+        freq_axis.title.fontSize = 30;
+        freq_axis.renderer.labels.template.fontWeight = "bold";
+
+        var reflect_axis = chart.yAxes.push(new am4charts.ValueAxis());
+        //reflect_axis.renderer.grid.template.location = 0;
+        reflect_axis.renderer.ticks.template.disabled = true;
+        reflect_axis.renderer.axisFills.template.disabled = true;
+        reflect_axis.renderer.labels.template.fontSize = 25;
+        reflect_axis.title.text = "Reflectance (%)";
+        reflect_axis.title.fontWeight = "bold";
+        reflect_axis.title.fontSize = 30;
+        reflect_axis.title.paddingBottom = 20;
+
+        var dettechtia_cancer_series = chart.series.push(new am4charts.LineSeries());
+        dettechtia_cancer_series.dataFields.valueY = "value";
+        dettechtia_cancer_series.dataFields.valueX = "frequency";
+        dettechtia_cancer_series.strokeWidth = 3;
+        dettechtia_cancer_series.name = "Squamous Cell Carcinoma";
+        dettechtia_cancer_series.stroke = am4core.color(scc_colour);;
+        dettechtia_cancer_series.data = scc_dict;
+
+        var dettechtia_cancer_series = chart.series.push(new am4charts.LineSeries());
+        dettechtia_cancer_series.dataFields.valueY = "value";
+        dettechtia_cancer_series.dataFields.valueX = "frequency";
+        dettechtia_cancer_series.strokeWidth = 3;
+        dettechtia_cancer_series.name = "Basasl Cell Carcinoma";
+        dettechtia_cancer_series.stroke = am4core.color(bcc_colour);;
+        dettechtia_cancer_series.data = bcc_dict;
+
+        var dettechtia_healthy_series = chart.series.push(new am4charts.LineSeries());
+        dettechtia_healthy_series.dataFields.valueY = "value";
+        dettechtia_healthy_series.dataFields.valueX = "frequency";
+        dettechtia_healthy_series.stroke = am4core.color(healthy_colour);
+        dettechtia_healthy_series.strokeWidth = 3;
+        dettechtia_healthy_series.name = "Healthy";
+        dettechtia_healthy_series.data = dettecthia_sig.filter(({sample}) => ["Healthy"].includes(sample));
+
+        var dettechtia_ak_series = chart.series.push(new am4charts.LineSeries());
+        dettechtia_ak_series.dataFields.valueY = "value";
+        dettechtia_ak_series.dataFields.valueX = "frequency";
+        dettechtia_ak_series.stroke = am4core.color(ak_colour);;
+        dettechtia_ak_series.strokeWidth = 3;
+        dettechtia_ak_series.name = "Actinic Keratosis";
+        dettechtia_ak_series.data = ak_dict;
+
+        chart.legend = new am4charts.Legend();
+        chart.legend.fontSize = 20;
+        chart.legend.fontWeight = "bold";
+
+        createRange(1383.79, 1454.83, am4core.color("#FF0000"), opacity = 0.075);
+        createRange(1236.95, 1322.21, am4core.color("#FF0000"), opacity = 0.075);
+        createRange(1109.06, 1208.53, am4core.color("#FF0000"), opacity = 0.075);
+        createRange(900.656, 1085.38, am4core.color("#FF0000"), opacity = 0.075);
+
+        if (see_channels) {
+          var optimal_range = freq_axis.axisRanges.create();
+          optimal_range.value = 929.075;
+          optimal_range.grid.stroke = am4core.color("black");
+          optimal_range.grid.strokeWidth = 2;
+          optimal_range.grid.strokeOpacity = 1;
+          optimal_range.grid.strokeDasharray = "8,4";
+
+          var optimal_range2_5 = freq_axis.axisRanges.create();
+          optimal_range2_5.value = 1033.280;
+          optimal_range2_5.grid.stroke = am4core.color("black");
+          optimal_range2_5.grid.strokeWidth = 2;
+          optimal_range2_5.grid.strokeOpacity = 1;
+          optimal_range2_5.grid.strokeDasharray = "8,4";
+
+          var optimal_range3 = freq_axis.axisRanges.create();
+          optimal_range3.value = 1118.540;
+          optimal_range3.grid.stroke = am4core.color("black");
+          optimal_range3.grid.strokeWidth = 2;
+          optimal_range3.grid.strokeOpacity = 1;
+          optimal_range3.grid.strokeDasharray = "8,4";
+        }
+
+        if (scroll) {
+          chart.cursor = new am4charts.XYCursor();
+          chart.cursor.behavior = "zoomY";
+
+          chart.cursor = new am4charts.XYCursor();
+          chart.cursor.behavior = "zoomXY";
+        }
+
+        chart.exporting.menu = new am4core.ExportMenu();
+
+      </script>
+
+      <div id = "final_window"></div>
+
+    </body>
+</html>
