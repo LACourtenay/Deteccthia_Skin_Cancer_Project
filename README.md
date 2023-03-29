@@ -7,20 +7,27 @@ Basal Cell Carcinoma, and Actinic Keratosis patiens, using Near Infrared Hypersp
 ## <b> Author Details </b>
 
 <i>
-Lloyd A. Courtenay\
+Lloyd A. Courtenay
+ 
 
 Email
 
+ 
 ladc1995@gmail.com
 
+ 
 ORCID
 
+ 
 https://orcid.org/0000-0002-4810-2001
 
+ 
 Current Afiliations:
 
+ 
 Universidad de Salamanca [USAL]
 
+ 
 </i>
 
 ---------------------------------------------------------------------------------------------------
