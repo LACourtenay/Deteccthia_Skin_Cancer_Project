@@ -76,6 +76,8 @@ The present repository contains:
 
 --------------------------------------------------------
 
+## <b> Citation </b>
+
 Please cite this repository as:
 
  <b> Courtenay, L.A. (2023) Code and Data for the DETTECTHIA skin cancer project. https://github.com/LACourtenay/Dettecthia_Skin_Cancer_Project </b>
