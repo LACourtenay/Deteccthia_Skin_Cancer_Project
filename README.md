@@ -34,9 +34,14 @@ This code has been designed for the open-source free R, Python and JavaScript pr
 All of the research included within the present repository was collected as part of the <b> DETTECTHIA </b> research project, funded by the
 Junta de Castilla y Leon and the European Regional Development Fund, with project reference number: SA097P20.
 
-<b> Project Title </b>:  Autmotaización en la <b>DETEC</b>ción Temprana y monitorización de Tumores cutáneos no-melanoma mediante imagen Hiperspectral e Inteligencia Artificia (DETECTTHIA)
+<b> Project Title </b>:  Autmotaización en la <b>DETEC</b>ción <b>T</b>emprana y monitorización de <b>T</b>umores cutáneos
+no-melanoma mediante imagen <b>H</b>iperspectral e <b>I</b>nteligencia <b>A</b>rtificial (<b>DETECTTHIA</b>)
 
-TIDOP research group website: http://tidop.usal.es/
+<b> Primary Investigator </b>: Diego González-Aguilera
+
+<b> Host Institution </b>: TIDOP Research Group - University of Salamanca.
+
+<b> Website </b>: http://tidop.usal.es/
 
 ---------------------------------------------------------------------------------------------------
 
