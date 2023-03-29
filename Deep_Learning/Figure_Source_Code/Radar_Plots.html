@@ -1,0 +1,288 @@
+
+<html>
+    <head>
+        <meta charset = "UTF-8">
+        <title>Radar Plots</title>
+        <style>
+          #Dettecthia, #radar_plot_BCC, #hyperskincare_BCC, #dettecthia_BCC {
+            width: 1250px;
+            height: 800px;
+            margin: 50px;
+          }
+        </style>
+        <script src="https://cdn.amcharts.com/lib/4/core.js"></script>
+        <script src="https://cdn.amcharts.com/lib/4/charts.js"></script>
+        <script src="https://cdn.amcharts.com/lib/4/themes/animated.js"></script>
+    </head>
+    <body>
+
+        <h1>Comparing BCC</h1>
+
+        <div id = "radar_plot_BCC"></div>
+
+        <script>
+
+            am4core.useTheme(am4themes_animated);
+            var chart = am4core.create("radar_plot_BCC", am4charts.RadarChart);
+
+            chart.data = [
+                {
+                    "Variable": "Accuracy",
+                    "VNIR" : 0.91,
+                    "NIR" : 0.89
+                }, {
+                    "Variable": "AUPRC",
+                    "VNIR" : 0.92,
+                    "NIR" : 0.84
+                }, {
+                    "Variable": "Precision",
+                    "VNIR" : 0.92,
+                    "NIR" : 0.89
+                }, {
+                    "Variable": "Recall",
+                    "VNIR" : 0.89,
+                    "NIR" : 0.89
+                }, {
+                    "Variable": "F-Measure",
+                    "VNIR" : 0.81,
+                    "NIR" : 0.89
+                }
+            ];
+
+            var categoryAxis = chart.xAxes.push(new am4charts.CategoryAxis());
+            categoryAxis.dataFields.category = "Variable";
+            categoryAxis.fontWeight = "bold";
+            categoryAxis.fontSize = 20;
+
+            var valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
+            valueAxis.renderer.gridType = "polygons";
+            valueAxis.fontWeight = 50;
+            valueAxis.fontSize = 20;
+            valueAxis.renderer.strokeWidth = 1.5;
+            valueAxis.min = 0.7;
+            valueAxis.max = 1;
+
+            var series1 = chart.series.push(new am4charts.RadarSeries());
+            series1.dataFields.valueY = "VNIR";
+            series1.dataFields.categoryX = "Variable";
+            series1.strokeWidth = 3;
+            series1.name = "VNIR";
+            series1.stroke = am4core.color("black");
+            series1.fillOpacity = 0.2;
+            series1.fill = am4core.color("black");
+
+            var series2 = chart.series.push(new am4charts.RadarSeries());
+            series2.dataFields.valueY = "NIR";
+            series2.dataFields.categoryX = "Variable";
+            series2.strokeWidth = 3;
+            series2.name = "NIR";
+            series2.stroke = am4core.color("red");
+            series2.fillOpacity = 0.2;
+            series2.fill = am4core.color("red");
+
+            var range = valueAxis.axisRanges.create();
+            range.value = 0.8;
+            range.grid.stroke = am4core.color("blue");
+            range.grid.strokeWidth = 2;
+            range.grid.strokeOpacity = 0.5;
+
+            chart.legend = new am4charts.Legend();
+            chart.legend.fontSize = 20;
+            chart.legend.fontWeight = "bold";
+
+            chart.exporting.menu = new am4core.ExportMenu();
+
+        </script>
+
+        <h1>Hyperskincare BCC</h1>
+
+        <div id = "hyperskincare_BCC"></div>
+
+        <script>
+
+            am4core.useTheme(am4themes_animated);
+            var chart = am4core.create("hyperskincare_BCC", am4charts.RadarChart);
+
+            chart.data = [
+                {
+                    "Variable": "Accuracy",
+                    "VNIR" : 0.91,
+                    "NIR" : 0.89
+                }, {
+                    "Variable": "AUPRC",
+                    "VNIR" : 0.92,
+                    "NIR" : 0.84
+                }, {
+                    "Variable": "Precision",
+                    "VNIR" : 0.92,
+                    "NIR" : 0.89
+                }, {
+                    "Variable": "Recall",
+                    "VNIR" : 0.89,
+                    "NIR" : 0.89
+                }, {
+                    "Variable": "F-Measure",
+                    "VNIR" : 0.81,
+                    "NIR" : 0.89
+                }
+            ];
+
+            var categoryAxis = chart.xAxes.push(new am4charts.CategoryAxis());
+            categoryAxis.dataFields.category = "Variable";
+            categoryAxis.fontWeight = "bold";
+            categoryAxis.fontSize = 20;
+
+            var valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
+            valueAxis.renderer.gridType = "polygons";
+            valueAxis.fontWeight = 50;
+            valueAxis.fontSize = 20;
+            valueAxis.renderer.strokeWidth = 1.5;
+            valueAxis.min = 0.7;
+            valueAxis.max = 1;
+
+            var series1 = chart.series.push(new am4charts.RadarSeries());
+            series1.dataFields.valueY = "VNIR";
+            series1.dataFields.categoryX = "Variable";
+            series1.strokeWidth = 3;
+            series1.name = "VNIR";
+            series1.stroke = am4core.color("black");
+            series1.fillOpacity = 0.2;
+            series1.fill = am4core.color("black");
+
+            var range = valueAxis.axisRanges.create();
+            range.value = 0.8;
+            range.grid.stroke = am4core.color("blue");
+            range.grid.strokeWidth = 2;
+            range.grid.strokeOpacity = 0.5;
+
+            chart.exporting.menu = new am4core.ExportMenu();
+
+        </script>
+
+        <h1>Dettecthia BCC</h1>  
+
+        <div id = "dettecthia_BCC"></div>
+
+        <script>
+
+            am4core.useTheme(am4themes_animated);
+            var chart = am4core.create("dettecthia_BCC", am4charts.RadarChart);
+
+            chart.data = [
+                {
+                    "Variable": "Accuracy",
+                    "VNIR" : 0.91,
+                    "NIR" : 0.89
+                }, {
+                    "Variable": "AUPRC",
+                    "VNIR" : 0.92,
+                    "NIR" : 0.84
+                }, {
+                    "Variable": "Precision",
+                    "VNIR" : 0.92,
+                    "NIR" : 0.89
+                }, {
+                    "Variable": "Recall",
+                    "VNIR" : 0.89,
+                    "NIR" : 0.89
+                }, {
+                    "Variable": "F-Measure",
+                    "VNIR" : 0.81,
+                    "NIR" : 0.89
+                }
+            ];
+
+            var categoryAxis = chart.xAxes.push(new am4charts.CategoryAxis());
+            categoryAxis.dataFields.category = "Variable";
+            categoryAxis.fontWeight = "bold";
+            categoryAxis.fontSize = 20;
+
+            var valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
+            valueAxis.renderer.gridType = "polygons";
+            valueAxis.fontWeight = 50;
+            valueAxis.fontSize = 20;
+            valueAxis.renderer.strokeWidth = 1.5;
+            valueAxis.min = 0.7;
+            valueAxis.max = 1;
+
+            var series1 = chart.series.push(new am4charts.RadarSeries());
+            series1.dataFields.valueY = "NIR";
+            series1.dataFields.categoryX = "Variable";
+            series1.strokeWidth = 3;
+            series1.name = "NIR";
+            series1.stroke = am4core.color("black");
+            series1.fillOpacity = 0.2;
+            series1.fill = am4core.color("black");
+
+            var range = valueAxis.axisRanges.create();
+            range.value = 0.8;
+            range.grid.stroke = am4core.color("blue");
+            range.grid.strokeWidth = 2;
+            range.grid.strokeOpacity = 0.5;
+
+            chart.exporting.menu = new am4core.ExportMenu();
+
+        </script>
+
+        <h1>Overall Dettecthia</h1>  
+
+        <div id = "Dettecthia"></div>
+
+        <script>
+
+            am4core.useTheme(am4themes_animated);
+            var chart = am4core.create("Dettecthia", am4charts.RadarChart);
+
+            chart.data = [
+                {
+                    "Variable": "Accuracy",
+                    "NIR" : 0.925
+                }, {
+                    "Variable": "AUPRC",
+                    "NIR" : 0.775
+                }, {
+                    "Variable": "Precision",
+                    "NIR" : 0.925
+                }, {
+                    "Variable": "Recall",
+                    "NIR" : 0.92
+                }, {
+                    "Variable": "F-Measure",
+                    "NIR" : 0.92
+                }
+            ];
+
+            var categoryAxis = chart.xAxes.push(new am4charts.CategoryAxis());
+            categoryAxis.dataFields.category = "Variable";
+            categoryAxis.fontWeight = "bold";
+            categoryAxis.fontSize = 20;
+
+            var valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
+            valueAxis.renderer.gridType = "polygons";
+            valueAxis.fontWeight = 50;
+            valueAxis.fontSize = 20;
+            valueAxis.renderer.strokeWidth = 1.5;
+            valueAxis.min = 0.7;
+            valueAxis.max = 1;
+
+            var series1 = chart.series.push(new am4charts.RadarSeries());
+            series1.dataFields.valueY = "NIR";
+            series1.dataFields.categoryX = "Variable";
+            series1.strokeWidth = 3;
+            series1.name = "NIR";
+            series1.stroke = am4core.color("black");
+            series1.fillOpacity = 0.2;
+            series1.fill = am4core.color("black");
+
+            var range = valueAxis.axisRanges.create();
+            range.value = 0.8;
+            range.grid.stroke = am4core.color("blue");
+            range.grid.strokeWidth = 2;
+            range.grid.strokeOpacity = 0.5;
+
+            chart.exporting.menu = new am4core.ExportMenu();
+
+        </script>
+
+    </body>
+</html>
