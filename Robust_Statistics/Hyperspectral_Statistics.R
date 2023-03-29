@@ -19,7 +19,7 @@ for (i in c("ggplot2", "tibble", "dplyr", "tidyverse", "e1071",
   } else {install.packages(i)}
 }; rm(i)
 
-if ("pValueRobust" %in% rownames(installed.packages() == TRUE) {
+if ("pValueRobust" %in% rownames(installed.packages() == TRUE)) {
   print("The package names pValueRobust has already been installed")
 } else {devtools::install_github("LACourtenay/pValueRobust")}
 
