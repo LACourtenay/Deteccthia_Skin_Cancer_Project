@@ -10,7 +10,7 @@ Basal Cell Carcinoma, and Actinic Keratosis patiens, using Near Infrared Hypersp
 
 <b> Email </b>: ladc1995@gmail.com
 
-<b> ORCID </b>: [http://tidop.usal.es/](https://orcid.org/0000-0002-4810-2001)
+<b> ORCID </b>: https://orcid.org/0000-0002-4810-2001
 
 <b> Current Afiliation </b>: Universidad de Salamanca [USAL]
 
