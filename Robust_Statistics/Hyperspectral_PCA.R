@@ -9,9 +9,6 @@
 
 # libraries ----------------------
 
-library(GraphGMM) # can install using devtools::install_github("LACourtenay/GraphGMM")
-library(ggplot2)
-
 if ("ggplot2" %in% rownames(installed.packages() == TRUE) {
   print("The package names ggplot2 has already been installed")
 } else {install.packages("ggplot2")}
@@ -20,6 +17,9 @@ if ("GraphGMM" %in% rownames(installed.packages() == TRUE) {
   print("The package names GraphGMM has already been installed")
 } else {devtools::install_github("LACourtenay/GraphGMM")}
 
+library(GraphGMM) # can install using devtools::install_github("LACourtenay/GraphGMM")
+library(ggplot2)
+    
 #
 
 # load data -----------------
