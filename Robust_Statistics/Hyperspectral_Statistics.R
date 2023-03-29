@@ -12,12 +12,16 @@
 # check to see whether the required packages are installed on your system. If they are not, they will be installed
 
 for (i in c("ggplot2", "tibble", "dplyr", "tidyverse", "e1071",
-            "philentropy", "gridExtra", "RVAideMemoire", "asbio",
+            "gridExtra",
             "car", "caret", "pROC")) {
   if(i %in% rownames(installed.packages()) == TRUE) {
     print(paste("The package named", i, "has already been installed", sep = " "))
   } else {install.packages(i)}
 }; rm(i)
+
+if ("pValueRobust" %in% rownames(installed.packages() == TRUE) {
+  print("The package names pValueRobust has already been installed")
+} else {devtools::install_github("LACourtenay/pValueRobust")}
 
 # load packages
 
@@ -26,14 +30,9 @@ library(tibble)
 library(dplyr)
 library(tidyverse)
 library(e1071)
-library(philentropy)
 library(gridExtra)
-library(RVAideMemoire)
-library(asbio)
 library(car)
-library(caret)
-library(pROC)
-library(pValueRobust)
+library(pValueRobust) # can install using devtools::install_github("LACourtenay/pValueRobust")
 
 #
 
