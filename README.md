@@ -58,6 +58,7 @@ The present repository contains:
     * All the data that can be used for training of the original model as well as the transfer-learning trained model. Set up for the classification
     of H and BCC samples.
     * Python code used for Transfer Learning.
+  * Source code for figures comparing algorithms and visualising example signatures
 
 --------------------------------------------------------
 
