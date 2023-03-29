@@ -7,7 +7,7 @@ Basal Cell Carcinoma, and Actinic Keratosis patiens, using Near Infrared Hypersp
 ## <b> Author Details </b>
 
 <i>
-Lloyd A. Courtenay\\
+Lloyd A. Courtenay\
 
 Email
 
