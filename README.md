@@ -78,7 +78,7 @@ The present repository contains:
 
 Please cite this repository as:
 
- <b> Courtenay (2023) Code and Data for the Dettecthia skin cancer project. https://github.com/LACourtenay/Dettecthia_Skin_Cancer_Project </b>
+ <b> Courtenay (2023) Code and Data for the DETTECTHIA skin cancer project. https://github.com/LACourtenay/Dettecthia_Skin_Cancer_Project </b>
 
 --------------------------------------------------------
 
