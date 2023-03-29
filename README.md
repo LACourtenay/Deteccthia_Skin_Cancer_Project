@@ -48,7 +48,7 @@ The present repository contains:
     * A folder containing all JavaScript code used to create Amcharts figures for the visualisation of some data.
 * <b> Deep Learning Folder </b>
   * Code for the training of CNSVM models.
-  * Pretrained models and weights for all experiments performed within this project
+  * Examples of pretrained models and weights
   * SSH file used to launch the algorithm in the Centre of Supercomputation of Castilla y León
   * <b> Transfer Learning Folder </b>
     * All the data that can be used for training of the original model as well as the transfer-learning trained model. Set up for the classification
