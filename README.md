@@ -61,7 +61,7 @@ The present repository contains:
 
 --------------------------------------------------------
 
-<b>System Requirements for Deep Learning: </b>
+## <b> System Requirements for Deep Learning </b>
 
 * Python
     * Version 3.0 or higher
