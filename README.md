@@ -27,8 +27,14 @@ Universidad de Salamanca [USAL]
 
 This code has been designed for the open-source free R, Python and JavaScript programming languages.
 
+---------------------------------------------------------------------------------------------------
+
+## <b> Project Details </b>
+
 All of the research included within the present repository was collected as part of the <b> DETTECTHIA </b> research project, funded by the
 Junta de Castilla y Leon and the European Regional Development Fund, with project reference number: SA097P20.
+
+<b> Project Title </b> Autmotaización en la DETECción Temprana y monitorización de Tumores cutáneos no-melanoma mediante imagen Hiperspectral e Inteligencia Artificia (DETECTTHIA) </b>
 
 TIDOP research group website: http://tidop.usal.es/
 
