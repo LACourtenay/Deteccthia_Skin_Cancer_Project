@@ -1,6 +1,6 @@
 # Dettecthia Skin Cancer Project
 Code used for the robust statistical analysis and development of deep learning tools for the study of Squamous Cell Carcinoma,
-Basal Cell Carcinoma, and Actinic Keratosis patiens, using Near Infrared Hyperspectral Imagery.
+Basal Cell Carcinoma, and Actinic Keratosis patients, using Near Infrared Hyperspectral Imagery.
 
 -----------------------------------------------------------------------------------------------------------------
 
