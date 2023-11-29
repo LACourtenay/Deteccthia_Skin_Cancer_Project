@@ -168,8 +168,8 @@ homoscedasticity_test <- function(data, method) {
       homosc_results <- homosc_results %>%
         add_row(
           Band_name = paste("BAND_", i, sep = ""),
-          Test_Statistic = leveneTest(target, data$Sample3, location = "median")$`F value`[[1]],
-          p_Value = leveneTest(target, data$Sample3, location = "median")$`Pr(>F)`[[1]]
+          Test_Statistic = leveneTest(target, data$Sample, location = "median")$`F value`[[1]],
+          p_Value = leveneTest(target, data$Sample, location = "median")$`Pr(>F)`[[1]]
         )
     }
     
@@ -246,8 +246,8 @@ homoscedasticity_test <- function(data, method) {
       homosc_results <- homosc_results %>%
         add_row(
           Band_name = paste("BAND_", i, sep = ""),
-          Test_Statistic = bartlett.test(target, data$Sample3)$statistic[[1]],
-          p_Value = bartlett.test(target, data$Sample3)$p.value[[1]]
+          Test_Statistic = bartlett.test(target, data$Sample)$statistic[[1]],
+          p_Value = bartlett.test(target, data$Sample)$p.value[[1]]
         )
     }
     pBFB <- c(); lower_post_odds <- c(); post_odds <- c()
